@@ -19,4 +19,7 @@ public class Book {
 
     private Type type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Student student;
+
 }

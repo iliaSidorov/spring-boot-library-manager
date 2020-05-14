@@ -19,7 +19,7 @@ public class Student {
 
     private String faculty;
 
-    private int year;
+    private Integer year;
 
     @OneToMany(
             mappedBy = "student",
