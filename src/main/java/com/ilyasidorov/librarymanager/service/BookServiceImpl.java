@@ -16,9 +16,10 @@ public class BookServiceImpl implements BookService{
         this.bookRepository = bookRepository;
     }
 
+
     @Override
-    public List<Book> findAllBooks() {
-        return bookRepository.findAll();
+    public List<Book> findByOrderById() {
+        return bookRepository.findByOrderById();
     }
 
     @Override
@@ -34,10 +35,5 @@ public class BookServiceImpl implements BookService{
     @Override
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Book> findByOrderById() {
-        return bookRepository.findByOrderById();
     }
 }

@@ -19,7 +19,8 @@ public class Student {
 
     private String faculty;
 
-    private Integer year;
+    @Enumerated(EnumType.STRING)
+    private Year year;
 
     @OneToMany(
             mappedBy = "student",
@@ -27,4 +28,7 @@ public class Student {
             orphanRemoval = true)
     private Set<Book> books = new HashSet<>();
 
+    public enum Year {
+        FIRST, SECOND, THIRD, FOURTH, FIFTH;
+    }
 }
