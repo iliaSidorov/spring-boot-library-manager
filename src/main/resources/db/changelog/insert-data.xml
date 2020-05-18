@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="Insert-initial-data-students" author="ilyasidorov" runOnChange="true">
+        <sql splitStatements="true">
+            INSERT INTO student (name, faculty, year) VALUES ('Jones, John', 'History', 'FIRST');
+            INSERT INTO student (name, faculty, year) VALUES ('Buckley, Ed', 'Philosophy', 'SECOND');
+            INSERT INTO student (name, faculty, year) VALUES ('Jankovsky, Paul', 'Programming', 'FIFTH');
+            INSERT INTO student (name, faculty, year) VALUES ('Ivanov, Robert', 'Philosophy', 'THIRD');
+            INSERT INTO student (name, faculty, year) VALUES ('Herz, Otto', 'Programming', 'SECOND');
+            INSERT INTO student (name, faculty, year) VALUES ('Nakazumi, Hiroku', 'Programming', 'THIRD');
+            INSERT INTO book (title, author, type, student_id) VALUES ('Clean Code', 'Martin, Robert', 'EDUCATION', 1);
+            INSERT INTO book (title, author, type, student_id) VALUES ('A Brief History Of Time', 'Hawking, Stephen', 'NON_FICTION', 2);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Moby Dick', 'Melvill, German', 'FICTION', 1);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Thinking In Java', 'Eckel, Bruce', 'EDUCATION', 3);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Guns, Germs, and Steel', 'Diamond, Jared', 'NON_FICTION', 4);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Effective Java', 'Bloch, Joshua', 'EDUCATION', 5);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Spring In Action', 'Walls, Craig', 'EDUCATION', 2);
+            INSERT INTO book (title, author, type, student_id) VALUES ('A Scanner Darkly', 'Dick, Philip', 'FICTION', null);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Refactoring', 'Fowler, Martin', 'EDUCATION', 5);
+            INSERT INTO book (title, author, type, student_id) VALUES ('Salambo', 'Flaubert, Gustav', 'FICTION', null);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
