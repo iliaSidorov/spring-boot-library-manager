@@ -1,12 +1,15 @@
 package com.ilyasidorov.librarymanager.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@RequiredArgsConstructor
 @Entity
 @Table(name = "student")
 public class Student {
@@ -22,13 +25,12 @@ public class Student {
     @Enumerated(EnumType.STRING)
     private Year year;
 
-    @OneToMany(
-            mappedBy = "student",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private Set<Book> books = new HashSet<>();
-
     public enum Year {
         FIRST, SECOND, THIRD, FOURTH, FIFTH;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -1,6 +1,8 @@
 package com.ilyasidorov.librarymanager.service;
 
 import com.ilyasidorov.librarymanager.domain.Book;
+import com.ilyasidorov.librarymanager.domain.Book.Type;
+import com.ilyasidorov.librarymanager.domain.Student;
 import com.ilyasidorov.librarymanager.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,25 @@ public class BookServiceImpl implements BookService{
     @Override
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public Long countBooks() {
+        return bookRepository.count();
+    }
+
+    @Override
+    public List<Book> findBooksByAuthor(String author) {
+        return bookRepository.findAllByAuthorEquals(author);
+    }
+
+    @Override
+    public List<Book> findBooksByType(Type type) {
+        return bookRepository.findAllByTypeEquals(type);
+    }
+
+    @Override
+    public List<Book> findBooksByStudent(String name) {
+        return bookRepository.findAllByStudent_Name(name);
     }
 }

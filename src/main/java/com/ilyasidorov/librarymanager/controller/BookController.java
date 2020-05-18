@@ -2,6 +2,7 @@ package com.ilyasidorov.librarymanager.controller;
 
 import com.ilyasidorov.librarymanager.domain.Book;
 import com.ilyasidorov.librarymanager.domain.Book.Type;
+import com.ilyasidorov.librarymanager.domain.Student;
 import com.ilyasidorov.librarymanager.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class BookController {
     @GetMapping
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.findByOrderById());
+        model.addAttribute("count", bookService.countBooks());
         return "allBooks";
     }
 
@@ -61,6 +63,23 @@ public class BookController {
     public String deleteBook(@PathVariable("id") Long id) {
         bookService.deleteBook(id);
         return "redirect:/books";
+    }
+
+    //get all books by selected author
+    @GetMapping("/booksByAuthor/{author}")
+    public String getBooksByAuthor(@PathVariable("author") String author, Model model) {
+        model.addAttribute("books", bookService.findBooksByAuthor(author));
+        return "booksByAuthor";
+    }
+
+    //get all books by selected type
+
+
+    //get all books taken by this student
+    @GetMapping("/booksByStudent/{name}")
+    public String getBooksByStudent(@PathVariable("name") String name, Model model) {
+        model.addAttribute("books", bookService.findBooksByStudent(name));
+        return "debts";
     }
 
     //convert the values of the enum Type to list of String

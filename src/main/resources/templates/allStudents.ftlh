@@ -16,7 +16,7 @@
                 <th>Name</th>
                 <th>Faculty</th>
                 <th>Year</th>
-                <th>Status</th>
+                <th>Debts</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -26,9 +26,9 @@
                 <tr>
                     <td><a href="/students/student/${student.id}">${student.id}</a></td>
                     <td>${student.name}</td>
-                    <td><a href="#">${student.faculty}</a></td>
-                    <td><a href="#">${student.year}</a></td>
-                    <td><a href="#">Later</a></td>
+                    <td>${student.faculty}</td>
+                    <td>${student.year}</td>
+                    <td><a href="/books/booksByStudent/${student.name}">See the debts</a></td>
                     <td><button><a href="/students/edit/${student.id}">Edit</a></button></td>
                     <td><button><a href="/students/delete/${student.id}">Delete</a></button></td>
                 </tr>
