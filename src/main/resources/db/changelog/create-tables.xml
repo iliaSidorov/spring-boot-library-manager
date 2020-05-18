@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="Create tables" author="ilyasidorov" runOnChange="true">
+
+        <!-- Drop tables if exists -->
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS book;
+            DROP TABLE IF EXISTS student;
+        </sql>
+
+        <!-- Create tables -->
+        <createTable tableName="student">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="faculty" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement columnName="id" tableName="student" columnDataType="bigint" incrementBy="1" startWith="1"/>
+
+        <createTable tableName="book">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="student_id" type="bigint">
+                <constraints foreignKeyName="FK_student_book"
+                             referencedTableName="student" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+        </createTable>
+        <addAutoIncrement columnName="id" tableName="book" columnDataType="bigint" incrementBy="1" startWith="1"/>
+    </changeSet>
+
+
+</databaseChangeLog>

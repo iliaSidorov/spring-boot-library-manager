@@ -20,7 +20,7 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Student student;
 
     public enum Type {

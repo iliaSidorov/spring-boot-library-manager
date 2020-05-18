@@ -33,11 +33,11 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
@@ -50,7 +50,7 @@
             <groupId>org.liquibase.ext</groupId>
             <artifactId>liquibase-hibernate5</artifactId>
             <version>3.6</version>
-        </dependency>-->
+        </dependency>
 
         <!--Devtools-->
         <dependency>
@@ -96,7 +96,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.8.9</version>
@@ -106,7 +106,7 @@
                         <user.name>ilyasidorov</user.name>
                     </systemProperties>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
