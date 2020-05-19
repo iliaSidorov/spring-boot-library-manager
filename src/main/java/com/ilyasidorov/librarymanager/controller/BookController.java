@@ -1,15 +1,10 @@
 package com.ilyasidorov.librarymanager.controller;
 
 import com.ilyasidorov.librarymanager.domain.Book;
-import com.ilyasidorov.librarymanager.domain.Book.Type;
-import com.ilyasidorov.librarymanager.domain.Student;
 import com.ilyasidorov.librarymanager.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -39,7 +34,7 @@ public class BookController {
     //add book
     @GetMapping("/add")
     public String getAddBookForm(Model model) {
-        model.addAttribute("types", convertTypeToList());
+        model.addAttribute("types", bookService.convertTypeToList());
         return "addBookForm";
     }
 
@@ -54,7 +49,7 @@ public class BookController {
     public String getEditForm(@PathVariable("id") Long id, Model model) {
         Book book = bookService.getBookById(id).orElse(new Book());
         model.addAttribute("book", book);
-        model.addAttribute("types", convertTypeToList());
+        model.addAttribute("types", bookService.convertTypeToList());
         return "editBookForm";
     }
 
@@ -82,11 +77,6 @@ public class BookController {
         return "debts";
     }
 
-    //convert the values of the enum Type to list of String
-    private List<String> convertTypeToList() {
-        return Arrays.stream(Type.values())
-                .map(Type::name)
-                .collect(Collectors.toList());
-    }
+
 
 }

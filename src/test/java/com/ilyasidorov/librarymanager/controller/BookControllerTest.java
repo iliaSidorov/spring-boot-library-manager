@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -15,20 +16,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HomeControllerTest {
+public class BookControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private HomeController homeController;
+    private BookController bookController;
 
     @Test
-    public void testHomePage() throws Exception {
-        this.mockMvc.perform(get("/"))
+    public void testAllBooksPage() throws Exception {
+        this.mockMvc.perform(get("/books"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("home"))
-                .andExpect(content().string(containsString("Welcome To The Library")));
+                .andExpect(view().name("allBooks"));
+
     }
+
 }

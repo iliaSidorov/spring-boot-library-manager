@@ -18,5 +18,9 @@ public interface BookService {
     void deleteBook(Long id);
     Long countBooks();
 
+    //convert the values of the enum Book.Year to list of String
+    List<String> convertTypeToList();
+
+
 
 }

@@ -63,7 +63,7 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    //convert the values of the enum Year to list of String
+
     private List<String> convertYearToList() {
         return Arrays.stream(Year.values())
                 .map(Year::name)

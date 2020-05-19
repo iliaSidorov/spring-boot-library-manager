@@ -6,8 +6,10 @@ import com.ilyasidorov.librarymanager.domain.Student;
 import com.ilyasidorov.librarymanager.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService{
@@ -57,5 +59,12 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Book> findBooksByStudent(String name) {
         return bookRepository.findAllByStudent_Name(name);
+    }
+
+    @Override
+    public List<String> convertTypeToList() {
+            return Arrays.stream(Type.values())
+                    .map(Type::name)
+                    .collect(Collectors.toList());
     }
 }
