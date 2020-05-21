@@ -49,7 +49,7 @@ public class StudentController {
 
     //edit student
     @GetMapping("/edit/{id}")
-    public String getEditForm(@PathVariable("id") Long id, Model model) {
+    public String getEditStudentForm(@PathVariable("id") Long id, Model model) {
         Student student = studentService.getStudentById(id).orElse(new Student());
         model.addAttribute("student", student);
         model.addAttribute("years", convertYearToList());

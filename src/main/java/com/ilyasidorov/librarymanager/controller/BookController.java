@@ -46,7 +46,7 @@ public class BookController {
 
     //edit book
     @GetMapping("/edit/{id}")
-    public String getEditForm(@PathVariable("id") Long id, Model model) {
+    public String getBookEditForm(@PathVariable("id") Long id, Model model) {
         Book book = bookService.getBookById(id).orElse(new Book());
         model.addAttribute("book", book);
         model.addAttribute("types", bookService.convertTypeToList());
