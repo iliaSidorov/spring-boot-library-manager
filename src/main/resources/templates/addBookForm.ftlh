@@ -26,6 +26,7 @@
 
         </table>
         <br/>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Add">
     </form>
 </div>

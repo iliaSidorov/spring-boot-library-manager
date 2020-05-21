@@ -4,6 +4,7 @@
         <h3>Book Storage</h3>
         <br/><br/>
         <form name="new" action="/books/add" method="get">
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Add New Book">
         </form>
         <br>

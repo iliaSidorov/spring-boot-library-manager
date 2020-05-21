@@ -4,6 +4,7 @@
         <h3>Registred Students</h3>
         <br/><br/>
         <form name="new" action="/students/add" method="get">
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Register New Student">
         </form>
         <br>

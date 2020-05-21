@@ -39,7 +39,9 @@
                 </tr>
             </table>
             <br/>
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Save"/>
+
         </form>
     </div>
 </@c.page>
