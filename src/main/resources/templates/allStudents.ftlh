@@ -5,7 +5,7 @@
         <br/><br/>
         <form name="new" action="/students/add" method="get">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <input type="submit" value="Register New Student">
+            <input type="submit" value="Add New Student">
         </form>
         <br>
         Total number of registred students: ${students?size}
