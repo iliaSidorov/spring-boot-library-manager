@@ -3,6 +3,7 @@ package com.ilyasidorov.librarymanager.controller;
 import com.ilyasidorov.librarymanager.domain.Role;
 import com.ilyasidorov.librarymanager.domain.User;
 import com.ilyasidorov.librarymanager.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
 
     private final UserService userService;
