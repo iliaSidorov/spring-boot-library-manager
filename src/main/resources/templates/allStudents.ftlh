@@ -30,8 +30,8 @@
                     <td>${student.faculty}</td>
                     <td>${student.year}</td>
                     <td><a href="/books/booksByStudent/${student.name}">See the debts</a></td>
-                    <td><button><a href="/students/edit/${student.id}">Edit</a></button></td>
-                    <td><button><a href="/students/delete/${student.id}">Delete</a></button></td>
+                    <td><a href="/students/edit/${student.id}">Edit</a></td>
+                    <td><a href="/students/delete/${student.id}">Delete</a></td>
                 </tr>
             </#list>
             </tbody>

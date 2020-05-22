@@ -34,8 +34,8 @@
                         <#else>
                             <td><a href="#">In storage</a></td>
                         </#if>
-                    <td><button><a href="/books/edit/${book.id}">Edit</a></button></td>
-                    <td><button><a href="/books/delete/${book.id}">Delete</a></button></td>
+                    <td><a href="/books/edit/${book.id}">Edit</a></td>
+                    <td><a href="/books/delete/${book.id}">Delete</a></td>
                 </tr>
             </#list>
             </tbody>

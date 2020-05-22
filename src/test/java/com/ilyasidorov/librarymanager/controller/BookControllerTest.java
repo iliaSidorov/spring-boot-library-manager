@@ -24,13 +24,13 @@ public class BookControllerTest {
     @Autowired
     private BookController bookController;
 
-    @Test
+    /*@Test
     public void testAllBooksPage() throws Exception {
         this.mockMvc.perform(get("/books"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("allBooks"));
 
-    }
+    }*/
 
 }
