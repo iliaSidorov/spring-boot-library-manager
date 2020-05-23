@@ -8,6 +8,10 @@ import java.util.List;
 public interface UserService extends UserDetailsService {
 
     User findUserByUsername(String username);
+
     void saveUser(User user);
+
     List<User> findAllUsers();
+
+    boolean addUser(User user);
 }
