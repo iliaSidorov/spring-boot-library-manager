@@ -17,9 +17,11 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final MailSender mailSender;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, MailSender mailSender) {
         this.userRepository = userRepository;
+        this.mailSender = mailSender;
     }
 
     @Override
@@ -55,8 +57,30 @@ public class UserServiceImpl implements UserService {
         saveUser(user);
 
         if (!StringUtils.isEmpty(user.getEmail())) {
-            
+            String message = String.format("Hello %s! \n" +
+                            "Welcome to the Library-manager. Please visit: http://localhost:8080/activate/%s",
+                    user.getUsername(), user.getActivationCode());
+            mailSender.send(user.getEmail(), "Activation Code", message);
         }
+        return true;
+    }
+
+    @Override
+    public User findUserByActivationCode(String code) {
+        return userRepository.findByActivationCode(code);
+    }
+
+    @Override
+    public boolean activateUser(String code) {
+        User user = findUserByActivationCode(code);
+
+        if (user == null) {
+            return false;
+        }
+
+        user.setActivationCode(null);
+        saveUser(user);
+
         return true;
     }
 }

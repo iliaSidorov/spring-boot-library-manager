@@ -14,4 +14,8 @@ public interface UserService extends UserDetailsService {
     List<User> findAllUsers();
 
     boolean addUser(User user);
+
+    boolean activateUser(String code);
+
+    User findUserByActivationCode(String code);
 }
