@@ -24,7 +24,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String getAddingUser(User user, Model model) {
-        User userFromDb = userService.findUserByUsername(user.getUsername());
+
         if (!userService.addUser(user)) {
             model.addAttribute("message", "User exists!");
             return "registration";

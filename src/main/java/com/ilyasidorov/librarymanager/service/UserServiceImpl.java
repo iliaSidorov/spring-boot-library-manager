@@ -3,9 +3,11 @@ package com.ilyasidorov.librarymanager.service;
 import com.ilyasidorov.librarymanager.domain.Role;
 import com.ilyasidorov.librarymanager.domain.User;
 import com.ilyasidorov.librarymanager.repository.UserRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -19,9 +21,16 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final MailSender mailSender;
 
+
     public UserServiceImpl(UserRepository userRepository, MailSender mailSender) {
         this.userRepository = userRepository;
         this.mailSender = mailSender;
+    }
+
+    @Bean
+    @Override
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder(8);
     }
 
     @Override
@@ -54,6 +63,8 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
+        user.setPassword(getPasswordEncoder().encode(user.getPassword()));
+
         saveUser(user);
 
         if (!StringUtils.isEmpty(user.getEmail())) {
@@ -73,14 +84,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean activateUser(String code) {
         User user = findUserByActivationCode(code);
-
         if (user == null) {
             return false;
         }
-
         user.setActivationCode(null);
         saveUser(user);
-
         return true;
     }
+
+
 }

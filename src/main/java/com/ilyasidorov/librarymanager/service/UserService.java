@@ -2,6 +2,7 @@ package com.ilyasidorov.librarymanager.service;
 
 import com.ilyasidorov.librarymanager.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface UserService extends UserDetailsService {
     boolean activateUser(String code);
 
     User findUserByActivationCode(String code);
+
+    PasswordEncoder getPasswordEncoder();
 }

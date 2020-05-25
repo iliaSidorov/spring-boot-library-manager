@@ -38,9 +38,6 @@ public class MailConfig {
     private String starttls;
 
 
-
-
-
     @Bean
     public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
