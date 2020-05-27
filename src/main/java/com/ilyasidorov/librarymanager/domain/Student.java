@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -19,10 +20,13 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name cannot be empty")
     private String name;
 
+    @NotBlank(message = "Faculty cannot be empty")
     private String faculty;
 
+    @NotBlank(message = "Year cannot be empty")
     @Enumerated(EnumType.STRING)
     private Year year;
 

@@ -4,7 +4,10 @@ import com.ilyasidorov.librarymanager.domain.Book;
 import com.ilyasidorov.librarymanager.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import java.util.Map;
 
 
 @Controller
@@ -38,9 +41,18 @@ public class BookController {
         return "addBookForm";
     }
 
+        //note: Model model in arg-list must locate after bindingResult
     @PostMapping("/add")
-    public String addBook(@ModelAttribute("book") Book book) {
-        bookService.saveBook(book);
+    public String addBook(@Valid Book book, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("book", book);
+            return "addBookForm";
+        } else {
+            bookService.saveBook(book);
+        }
         return "redirect:/books";
     }
 

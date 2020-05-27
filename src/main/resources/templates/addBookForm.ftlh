@@ -1,33 +1,40 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-<div align="center">
     <h4>Add New Book</h4>
-    <br/>
-    <form name="book" action="/books/add" method="post">
-        <table border="1" cellpadding="8">
-        <tr>
-            <td>Title</td>
-            <td><input title="Title" type="text" name="title"></td>
-        </tr>
-        <tr>
-            <td>Author</td>
-            <td><input title="Author" type="text" name="author"></td>
-        </tr>
-        <tr>
-            <td>Type</td>
-            <td>
-                <select title="Type" name="type">
-                    <#list types as type>
-                    <option>${type}</option>
-                    </#list>
-                </select>
-            </td>
-        </tr>
-
-        </table>
-        <br/>
+    <div class="form-group mt-3">
+    <form action="/books/add" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control ${(titleError??)?string('is-invalid', '')}"
+            value="<#if book??>${book.title}</#if>" name="title" placeholder="Title">
+            <#if titleError??>
+                <div class="invalid-feedback">
+                    ${titleError}
+                </div>
+            </#if>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control ${(authorError??)?string('is-invalid', '')}"
+                   value="<#if book??>${book.author}</#if>" name="author" placeholder="Author">
+            <#if authorError??>
+                <div class="invalid-feedback">
+                    ${authorError}
+                </div>
+            </#if>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control ${(typeError??)?string('is-invalid', '')}"
+                   name="type" placeholder="Type">
+            <#if typeError??>
+                <div class="invalid-feedback">
+                    ${typeError}
+                </div>
+            </#if>
+        </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" value="Add">
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
     </form>
-</div>
+    </div>
+
 </@c.page>
