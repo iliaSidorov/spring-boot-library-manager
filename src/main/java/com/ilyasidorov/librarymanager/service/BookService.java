@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface BookService {
 
-    List<Book> findByOrderById();
+    List<Book> findBooksByOrderById();
     List<Book> findBooksByAuthor(String author);
     List<Book> findBooksByType(Type type);
     List<Book> findBooksByStudent(String name);

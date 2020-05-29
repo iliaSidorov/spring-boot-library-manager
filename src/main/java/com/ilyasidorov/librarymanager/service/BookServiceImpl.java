@@ -22,7 +22,7 @@ public class BookServiceImpl implements BookService{
 
 
     @Override
-    public List<Book> findByOrderById() {
+    public List<Book> findBooksByOrderById() {
         return bookRepository.findByOrderById();
     }
 

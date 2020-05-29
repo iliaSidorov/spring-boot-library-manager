@@ -22,7 +22,7 @@ public class BookController {
 
     @GetMapping
     public String getAllBooks(Model model) {
-        model.addAttribute("books", bookService.findByOrderById());
+        model.addAttribute("books", bookService.findBooksByOrderById());
         model.addAttribute("count", bookService.countBooks());
         return "allBooks";
     }
