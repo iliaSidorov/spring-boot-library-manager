@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,9 +29,12 @@ public class Student {
     @NotBlank(message = "Faculty cannot be empty")
     private String faculty;
 
-    @NotBlank(message = "Year cannot be empty")
+    @NotNull(message = "Year cannot be empty")
     @Enumerated(EnumType.STRING)
     private Year year;
+
+    @OneToMany(mappedBy = "student")
+    private Set<Book> takenBooks = new HashSet<>();
 
     public enum Year {
         FIRST, SECOND, THIRD, FOURTH, FIFTH;

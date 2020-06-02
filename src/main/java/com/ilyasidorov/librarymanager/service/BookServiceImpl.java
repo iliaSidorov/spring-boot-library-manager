@@ -61,10 +61,6 @@ public class BookServiceImpl implements BookService{
         return bookRepository.findAllByStudent_Name(name);
     }
 
-    @Override
-    public List<String> convertTypeToList() {
-            return Arrays.stream(Type.values())
-                    .map(Type::name)
-                    .collect(Collectors.toList());
-    }
+
+
 }

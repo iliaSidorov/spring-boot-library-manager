@@ -1,32 +1,43 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <div align="center">
-        <h4>Register New Student</h4>
-        <br/>
-        <form name="book" action="/students/add" method="post">
-            <table border="1" cellpadding="8">
-                <tr>
-                    <td>Name</td>
-                    <td><input title="Name" type="text" name="name"></td>
-                </tr>
-                <tr>
-                    <td>Faculty</td>
-                    <td><input title="Faculty" type="text" name="faculty"></td>
-                </tr>
-                <tr>
-                    <td>Year</td>
-                    <td>
-                        <select title="Year" name="year">
-                            <#list years as year>
-                                <option>${year}</option>
-                            </#list>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <br/>
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <input type="submit" value="Add">
-        </form>
-    </div>
+        <h4>Add New Student</h4>
+        <div class="form-group mt-3">
+            <form action="/students/add" method="post">
+            <div class="form-group">
+            <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
+                   value="<#if student??>${student.name}</#if>" name="name" placeholder="Name">
+            <#if nameError??>
+                <div class="invalid-feedback">
+                    ${nameError}
+                </div>
+            </#if>
+            </div>
+
+            <div class="form-group">
+            <input type="text" class="form-control ${(facultyError??)?string('is-invalid', '')}"
+                   value="<#if student??>${student.faculty}</#if>" name="faculty" placeholder="Faculty">
+            <#if facultyError??>
+                <div class="invalid-feedback">
+                    ${facultyError}
+                </div>
+            </#if>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control ${(yearError??)?string('is-invalid', '')}"
+                       name="year" placeholder="Year">
+                <#if yearError??>
+                    <div class="invalid-feedback">
+                        ${yearError}
+                    </div>
+                </#if>
+            </div>
+
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+
+            </form>
+        </div>
 </@c.page>

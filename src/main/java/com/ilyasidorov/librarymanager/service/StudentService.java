@@ -1,5 +1,6 @@
 package com.ilyasidorov.librarymanager.service;
 
+import com.ilyasidorov.librarymanager.domain.Book;
 import com.ilyasidorov.librarymanager.domain.Student;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface StudentService {
     Optional<Student> getStudentById(Long id);
     void saveStudent(Student student);
     void deleteStudent(Long id);
+    void takeBook(Book book);
 }

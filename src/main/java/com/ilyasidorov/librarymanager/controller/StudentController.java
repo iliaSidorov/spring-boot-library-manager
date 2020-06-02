@@ -1,14 +1,19 @@
 package com.ilyasidorov.librarymanager.controller;
 
+import com.ilyasidorov.librarymanager.domain.Book;
 import com.ilyasidorov.librarymanager.domain.Student;
 import com.ilyasidorov.librarymanager.domain.Student.Year;
+import com.ilyasidorov.librarymanager.service.BookService;
 import com.ilyasidorov.librarymanager.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -16,9 +21,11 @@ import java.util.stream.Collectors;
 public class StudentController {
 
     private final StudentService studentService;
+    private final BookService bookService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, BookService bookService) {
         this.studentService = studentService;
+        this.bookService = bookService;
     }
 
     @GetMapping
@@ -37,13 +44,23 @@ public class StudentController {
     //add student
     @GetMapping("/add")
     public String getAddStudentForm(Model model) {
-        model.addAttribute("years", convertYearToList());
+        model.addAttribute("years", ControllerUtils.convertYearToList());
         return "addStudentForm";
     }
 
     @PostMapping("/add")
-    public String addStudent(@ModelAttribute("student") Student student) {
-        studentService.saveStudent(student);
+    public String addStudent(@Valid Student student,
+                             BindingResult bindingResult,
+                             Model model) {
+
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("student", student);
+            return "addStudentForm";
+        } else {
+            studentService.saveStudent(student);
+        }
         return "redirect:/students";
     }
 
@@ -52,7 +69,7 @@ public class StudentController {
     public String getEditStudentForm(@PathVariable("id") Long id, Model model) {
         Student student = studentService.getStudentById(id).orElse(new Student());
         model.addAttribute("student", student);
-        model.addAttribute("years", convertYearToList());
+        model.addAttribute("years", ControllerUtils.convertYearToList());
         return "editStudentForm";
     }
 
@@ -64,9 +81,10 @@ public class StudentController {
     }
 
 
-    private List<String> convertYearToList() {
-        return Arrays.stream(Year.values())
-                .map(Year::name)
-                .collect(Collectors.toList());
-    }
+
+
+
+
+
+
 }

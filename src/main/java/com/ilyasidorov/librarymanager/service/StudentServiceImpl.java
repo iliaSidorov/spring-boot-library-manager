@@ -1,5 +1,6 @@
 package com.ilyasidorov.librarymanager.service;
 
+import com.ilyasidorov.librarymanager.domain.Book;
 import com.ilyasidorov.librarymanager.domain.Student;
 import com.ilyasidorov.librarymanager.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
+    }
+
+    @Override
+    public void takeBook(Book book) {
+
     }
 }

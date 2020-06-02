@@ -37,7 +37,7 @@ public class BookController {
     //add book
     @GetMapping("/add")
     public String getAddBookForm(Model model) {
-        model.addAttribute("types", bookService.convertTypeToList());
+        model.addAttribute("types", ControllerUtils.convertTypeToList());
         return "addBookForm";
     }
 
@@ -61,7 +61,7 @@ public class BookController {
     public String getBookEditForm(@PathVariable("id") Long id, Model model) {
         Book book = bookService.getBookById(id).orElse(new Book());
         model.addAttribute("book", book);
-        model.addAttribute("types", bookService.convertTypeToList());
+        model.addAttribute("types", ControllerUtils.convertTypeToList());
         return "editBookForm";
     }
 
@@ -79,7 +79,6 @@ public class BookController {
         return "booksByAuthor";
     }
 
-    //get all books by selected type
 
 
     //get all books taken by this student

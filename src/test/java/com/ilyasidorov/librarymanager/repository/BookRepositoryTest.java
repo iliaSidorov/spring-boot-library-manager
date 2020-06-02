@@ -23,5 +23,5 @@ public class BookRepositoryTest {
         assertThat(books.size()).isEqualTo(10);
     }
 
-    
+
 }
